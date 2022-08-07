@@ -34,16 +34,17 @@
               <a href="" class="nav-link" id="Register" >Register</a>
             </li>
 
-            <li class="nav-item d-none d-sm-inline-block">
-              <a href="" class="nav-link" id="Users" >Manage User</a>
-            </li>
-
-            <li class="nav-item d-none d-sm-inline-block">
-              <a href="/accounts/logout" class="nav-link" id="logout" >Logout</a>
-            </li>
-
             {% if request.user.is_superuser %}
+            <li class="nav-item d-none d-sm-inline-block">
+              <a href="" class="nav-link" id="Users" >Manage Users</a>
+            </li>
             {% endif %}
+
+            <li class="nav-item d-none d-sm-inline-block">
+              <a href="{% url 'logout' %}" class="nav-link" id="logout" >Logout</a>
+            </li>
+
+
 
         </nav>
 
