@@ -1,5 +1,3 @@
-{% load adminlte_helpers i18n %}
-{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,49 +27,18 @@
             <li class="nav-item d-none d-sm-inline-block">
               <a href="" class="nav-link">Home</a>
             </li>
+
+            <td>
+                <button type="button" class="btn btn-block btn-outline-primary">Home</button>
+            </td>
+
         </nav>
 
         {% block content_wrapper %}
         <div class="content-wrapper">
-            {% block content_header %}
-                <section class="content-header">
-                    {% block no_heading %}
-                        <h1>
-                            {% block page_name %}{% endblock %}
-                            <div class="header-actions">
-                                {% block page_actions %}{% endblock %}
-                            </div>
-                            {% block no_description %}
-                            <small>{% block page_description %}{% endblock %}</small>
-                            {% endblock %}
-                        </h1>
-                        {% block breadcrumbs %}
-                            {# Breadcrumb implementation left to developers #}
-                        {% endblock %}
-                    {% endblock no_heading %}
-                </section>
-            {% endblock %}
-
-            {% block content_outer %}
-            <section class="content">
-                {% block messages %}
-                    {% include 'adminlte/lib/_messages.html' %}
-                {% endblock %}
-
-                {% block content_block_wrap %}
-                    {% block content %}{% endblock %}
-                {% endblock %}
-            </section>
-            {% endblock %}
 
         </div>
         {% endblock content_wrapper %}
-
-        {% block nav_footer %}
-            {% include 'adminlte/lib/_main_footer.html' %}
-        {% endblock %}
-
-
 
     </div>
 {% endblock body %}
