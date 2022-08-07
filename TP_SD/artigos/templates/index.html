@@ -24,9 +24,12 @@
 
 {% block body %}
     <div class="wrapper">
-        {% block nav_header %}
-            {% include 'adminlte/lib/_main_header.html' %}
-        {% endblock %}
+
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <li class="nav-item d-none d-sm-inline-block">
+              <a href="" class="nav-link">Home</a>
+            </li>
+        </nav>
 
         {% block content_wrapper %}
         <div class="content-wrapper">
