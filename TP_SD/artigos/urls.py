@@ -6,4 +6,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('upload/', views.uploadpage, name='uploadpage'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

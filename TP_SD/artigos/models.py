@@ -18,7 +18,6 @@ class usuario(AbstractUser):
 
     name = models.CharField(verbose_name="nome",max_length=100)
     email = models.EmailField('email')
-    role = models.CharField(verbose_name="função",max_length=100)
 
     def __str__(self):
         return self.name

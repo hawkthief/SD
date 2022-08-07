@@ -22,4 +22,5 @@ urlpatterns = [
     path('artigos/', include('artigos.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
