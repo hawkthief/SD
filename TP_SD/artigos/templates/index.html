@@ -28,10 +28,19 @@
               <a href="" class="nav-link">Home</a>
             </li>
 
-            <td>
-                <button type="button" class="btn btn-block btn-outline-primary">Home</button>
-            </td>
+            <li class="nav-item d-none d-sm-inline-block">
+              <a href="" class="nav-link">Register</a>
+            </li>
 
+
+            <div class="input-group input-group-sm">
+            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+            </button>
+            </div>
+            </div>
         </nav>
 
         {% block content_wrapper %}
