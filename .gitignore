@@ -130,3 +130,4 @@ dmypy.json
 
 # vscode stuff
 .vscode/
+/TP_SD/artigos/migrations/0001_initial.py

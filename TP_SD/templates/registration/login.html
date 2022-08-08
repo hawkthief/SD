@@ -23,13 +23,13 @@ class="login-page" style="min-height: 466px;">
 <form method="post">
   {% csrf_token %}
     <div class="input-group mb-3">
-    <input type="email" class="form-control" placeholder="Login">
+    <input type="" class="form-control" placeholder="Login"{{ form.username }}
     <div class="input-group-append">
     </div>
     </div>
 
     <div class="input-group mb-3">
-      <input type="password" class="form-control" placeholder="Password">
+      <input type="password" class="form-control" placeholder="Password"{{ form.password }}
       <div class="input-group-append">
       </div>
     </div>

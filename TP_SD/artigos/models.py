@@ -9,6 +9,7 @@ class art(models.Model):
     author = models.ForeignKey('usuario', on_delete=models.CASCADE)
     publisher = models.CharField(verbose_name="publicante", max_length=200)
     keyword = models.CharField(verbose_name="palavra_chave", max_length=500)
+    article = models.FileField()
 
     def __str__(self):
         return self.name
