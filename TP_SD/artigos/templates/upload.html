@@ -36,7 +36,7 @@
 
             {% if request.user.is_superuser %}
             <li class="nav-item d-none d-sm-inline-block">
-              <a href="/artigos/manage" class="nav-link" id="Users" >Manage Users</a>
+              <a href="/manage" class="nav-link" id="Users" >Manage Users</a>
             </li>
             {% endif %}
 
@@ -51,7 +51,7 @@
         {% block content_wrapper %}
         <div class="content-wrapper" >
 
-            <form action="/artigos/upload/" method="post">
+            <form action="/artigos/upload/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
 
@@ -59,47 +59,43 @@
                 <div class="card-body">
                 <div class="form-group">
                 <label for="title"> Article Title </label >
-                <input type="text" class="form-control" id="title" placeholder="Enter title">
+                <input type="text" class="form-control" id="title" placeholder="Enter title" {{ form.title }}
                 </div>
 
                 <label for="subtitle"> Article Subtitle </label >
-                <input type="text" class="form-control" id="subtitle" placeholder="Enter subtitle">
+                <input type="text" class="form-control" id="subtitle" placeholder="Enter subtitle" {{ form.subtitle }}
 
                 <label>Publication Date</label>
                 <div class="input-group date">
-                <input type="text" class="form-control" data-inputmask-alias="datetime"
-                       data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric" {{ form.pub_date }}>
+                <input type="date" class="form-control datepicker-input" data-inputmask-inputformat="dd/mm/yyyy" {{ form.pub_date }}
                 </div>
                 </div>
 
-
+                <div class="card-body">
                 <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="title"> Article Publisher </label >
+                <input type="text" class="form-control" id="publisher" placeholder="Enter publisher" {{ form.publisher }}
                 </div>
+
+                <div class="card-body">
                 <div class="form-group">
+                <label for="title"> Keywords Separated by comma [This,that,also-that]  </label >
+                <input type="text" class="form-control" id="keywords" placeholder="Enter Keywords" {{ form.keyword }}
+                </div>
+
                 <label for="exampleInputFile">File input</label>
                 <div class="input-group">
                 <div class="custom-file">
-                <input type="file" class="custom-file-input" id="exampleInputFile">
+                <input type="file" class="custom-file-input" id="exampleInputFile" {{ form.article }}
                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
-                <div class="input-group-append">
-                <span class="input-group-text">Upload</span>
                 </div>
-                </div>
-                </div>
-                <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-
 
                 <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-                </form>
-<form>
+            </form>
+
 <!--        {{ form.title }}
             {{ form.title.label_tag }}
 
@@ -118,9 +114,6 @@
             {{ form.article.label_tag }}
             {{ form.article }}
 -->
-
-
-            <input type="submit" value="Submit">
         </form>
 
         </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.core.files.base import ContentFile
 from .forms import artForm
 from .models import *
 
@@ -18,17 +19,10 @@ def uploadpage(request):
         nart.publisher = form.data['publisher']
         nart.keyword = form.data['keyword']
         nart.author = request.user
-        nart.article = form.data['article']
+        nart.article = request.FILES.get('article')
         nart.save()
         return render(request, 'index.html')
     else:
         form = artForm()
     return render(request, 'upload.html', {'form': form})
 
-@login_required()
-def manageusers(request):
-    if request.user.is_superuser:
-
-        return render(request, 'users.html')
-    else:
-        return render(request, 'index.html')
