@@ -15,7 +15,7 @@ def manageusers(request):
 
         return render(request, 'users.html')
     else:
-        return render(request, 'index.html')
+        return redirect('/artigos/search/')
 
 def newuser(request):
     if request.method == 'POST':
@@ -23,7 +23,7 @@ def newuser(request):
         if form.is_valid():
             user = form.save()
             login(request,user)
-        return redirect('/')
+        return redirect('/artigos/search/')
     else:
         form = newuserForm()
     return render(request, 'register.html', {'form': form})

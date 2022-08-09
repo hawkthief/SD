@@ -43,10 +43,16 @@ def index(request):
         if search.data['keywords']:
             artdf = artdf.query(keysearch, engine='python')
 
+        artdf = artdf[["id_x","author_id","name","title","subtitle","pub_date","publisher","keyword"]]
 
+        info = artdf.__array__()
 
+        context = {
+            'form': form,
+            'articles': info
+        }
 
-        return render(request, 'index.html', {'form': form})
+        return render(request, 'index.html', context)
 
     return render(request, 'index.html', {'form': form})
 @login_required()
@@ -62,7 +68,7 @@ def uploadpage(request):
         nart.author = request.user
         nart.article = request.FILES.get('article')
         nart.save()
-        return render(request, 'index.html')
+        return redirect('/artigos/search/')
     else:
         form = artForm()
     return render(request, 'upload.html', {'form': form})
