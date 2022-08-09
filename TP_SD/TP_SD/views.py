@@ -25,7 +25,7 @@ def newuser(request):
         if form.is_valid():
             user = form.save()
             login(request,user)
-        return redirect('index.html')
+        return redirect('/')
     else:
         form = newuserForm()
     return render(request, 'register.html', {'form': form})
