@@ -4,12 +4,10 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from .forms import newuserForm
-from artigos.models import *
 
 @login_required()
 def home(request):
-
-    return redirect('/artigos/')
+    return redirect('/artigos/search')
 
 @login_required()
 def manageusers(request):

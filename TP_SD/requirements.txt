@@ -2,3 +2,5 @@ django-adminlte3
 djangorestframework
 markdown
 django-filter
+numpy
+pandas

@@ -10,14 +10,14 @@ class artForm(forms.ModelForm):
         exclude = ['author']
 
 
-class searchForm(forms.ModelForm):
-    class Meta:
-        model = art
-        fields = '__all__'
-        exclude = ['file']
-        #widgets = {
-        #    'pub_date': DateInput(),
-        #}
+class searchForm(forms.Form):
+
+    title = forms.CharField(required=False)
+    subtitle = forms.CharField(required=False)
+    pub_date = forms.DateTimeField(required=False)
+    author = forms.CharField(required=False)
+    publisher = forms.CharField(required=False)
+    keywords = forms.CharField(required=False)
 
 class nuserForm(forms.ModelForm):
     class Meta:
