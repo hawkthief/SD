@@ -7,6 +7,10 @@ from .models import art, usuario
 from .forms import searchForm
 import pandas as pd
 
+
+
+
+
 @login_required()
 def index(request):
     form = searchForm()

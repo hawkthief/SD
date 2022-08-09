@@ -132,3 +132,4 @@ dmypy.json
 .vscode/
 /TP_SD/artigos/migrations/
 /TP_SD/media/
+/TP_SD/API/migrations/
