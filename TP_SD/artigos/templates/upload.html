@@ -56,69 +56,48 @@
 
 
 
-            <div class="card-body">
-                <div class="form-group">
-                <label for="title"> Article Title </label >
-                <input type="text" class="form-control" id="title" placeholder="Enter title" {{ form.title }}
-                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                    <label for="title"> Article Title </label >
+                    <input type="text" class="form-control" id="title" placeholder="Enter title" {{ form.title }}
+                    </div>
 
-                <div class="form-group">
-                <label for="subtitle"> Article Subtitle </label >
-                <input type="text" class="form-control" id="subtitle" placeholder="Enter subtitle" {{ form.subtitle }}
-                </div>
+                    <div class="form-group">
+                    <label for="subtitle"> Article Subtitle </label >
+                    <input type="text" class="form-control" id="subtitle" placeholder="Enter subtitle" {{ form.subtitle }}
+                    </div>
 
-                <div class="form-group">
-                <label>Publication Date</label>
-                <div class="input-group date">
-                <input type="date" class="form-control datepicker-input" data-inputmask-inputformat="dd/mm/yyyy" {{ form.pub_date }}
-                </div>
-                </div>
+                    <div class="form-group">
+                    <label>Publication Date</label>
+                    <div class="input-group date">
+                    <input type="date" class="form-control datepicker-input" data-inputmask-inputformat="dd/mm/yyyy" {{ form.pub_date }}
+                    </div>
+                    </div>
 
-                <div class="form-group">
-                <label for="title"> Article Publisher </label >
-                <input type="text" class="form-control" id="publisher" placeholder="Enter publisher" {{ form.publisher }}
-                </div>
+                    <div class="form-group">
+                    <label for="title"> Article Publisher </label >
+                    <input type="text" class="form-control" id="publisher" placeholder="Enter publisher" {{ form.publisher }}
+                    </div>
 
 
-                <div class="form-group">
-                <label for="title"> Keywords Separated by comma [This,that,also-that]  </label >
-                <input type="text" class="form-control" id="keywords" placeholder="Enter Keywords" {{ form.keyword }}
-                </div>
+                    <div class="form-group">
+                    <label for="title"> Keywords Separated by comma [This,that,also-that]  </label >
+                    <input type="text" class="form-control" id="keywords" placeholder="Enter Keywords" {{ form.keyword }}
+                    </div>
 
-                <label for="exampleInputFile">File input</label>
-                <div class="input-group">
-                <div class="custom-file">
-                <input type="file" class="custom-file-input" id="exampleInputFile" {{ form.article }}
-                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                </div>
-                </div>
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                    <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="exampleInputFile" {{ form.article }}
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                    </div>
+                    </div>
 
-                <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
-            </div>
             </form>
-
-<!--        {{ form.title }}
-            {{ form.title.label_tag }}
-
-            {{ form.subtitle.label_tag }}
-            {{ form.subtitle }}
-
-            {{ form.pub_date.label_tag }}
-            {{ form.pub_date }}
-
-            {{ form.publisher.label_tag }}
-            {{ form.publisher }}
-
-            {{ form.keyword.label_tag }}
-            {{ form.keyword }}
-
-            {{ form.article.label_tag }}
-            {{ form.article }}
--->
-        </form>
-
         </div>
         {% endblock content_wrapper %}
 

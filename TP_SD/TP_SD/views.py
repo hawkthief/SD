@@ -4,12 +4,20 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from .forms import newuserForm
+from artigos.forms import searchForm
 from artigos.models import *
+import pandas as pd
 
 @login_required()
 def home(request):
-
-    return redirect('/artigos/')
+    if request.method == 'POST':
+        form = searchForm(request.POST)
+        if form.is_valid():
+            pass
+        return redirect('/artigos/')
+    else:
+        form = searchForm()
+    return render(request, 'index.html', {'form': form})
 
 @login_required()
 def manageusers(request):
