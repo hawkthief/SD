@@ -95,6 +95,8 @@
                 </div>
             </form>
 
+            {% if request.method == "POST" %}
+
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
@@ -102,6 +104,9 @@
                     </div>
                 </div>
             </div>
+
+            {%endif%}
+            <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
             <table class="card-body">
                 <table class="table table-bordered table-hover">
                     {% for x in articles %}
@@ -110,30 +115,135 @@
                         <th>Publication Date</th>
                         <th>Title</th>
                         <th>Subtitle</th>
-                        <th>Article</th>
-                        <th>Keyword</th>
+                        <th>Author</th>
+                        <th>Keywords</th>
                         <th>Publisher</th>
                         </tr>
                         </thead>
 
                         <tbody>
                         <tr data-widget="expandable-table" aria-expanded="false">
-                        <td>{{x.1}}</td>
-                        <td>{{x.4}}</td>
-                        <td>{{x.3}}</td>
                         <td>{{x.5}}</td>
-                        <td>{{x.6}}</td>
+                        <td>{{x.3}}</td>
+                        <td>{{x.4}}</td>
+                        <td>{{x.2}}</td>
                         <td>{{x.7}}</td>
+                        <td>{{x.6}}</td>
                         <td>
-                            <button type="button" class="btn btn-default">
+
+                            <form action="/artigos/download/{{x.0}}" target="dummyframe" id="downloadform{{x.0}}" style="display: none;">
+                            </form>
+
+                            <button type="submit" class="btn btn-default" form="downloadform{{x.0}}">
                                 <ion-icon name="cloud-download-outline"></ion-icon>
+
                             </button>
-                            <button type="button" class="btn btn-default">
+
+                            {% if request.user.is_superuser or x.1 == request.user.id %}
+
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#infomodal{{x.0}}">
                                 <ion-icon name="create-outline"></ion-icon>
                             </button>
-                            <button type="button" class="btn btn-default">
+
+
+                                <div class="modal fade" id="infomodal{{x.0}}" tabindex="-1" role="dialog" aria-labelledby="modaltitle{{x.0}}" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="modaltitle{{x.0}}">Edit Article</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+
+
+                                          <div class="content-wrapper" >
+
+                                                <form action="/artigos/api/edit/" target="dummyframe" method="post" enctype="multipart/form-data" id="myform{{x.0}}">
+                                                {% csrf_token %}
+
+                                                    <input type="hidden" name="id" value="{{x.0}}">
+
+                                                    <div class="card-body">
+                                                        <div class="form-group">
+                                                        <label for="title"> Article Title </label >
+                                                        <input type="text" class="form-control" name="title" placeholder="Enter title" >
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                        <label for="subtitle"> Article Subtitle </label >
+                                                        <input type="text" class="form-control" name="subtitle" placeholder="Enter subtitle" >
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                        <label>Publication Date</label>
+                                                        <div class="input-group date">
+                                                        <input type="date" class="form-control datepicker-input" name="pub_date" data-inputmask-inputformat="dd/mm/yyyy">
+                                                        </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                        <label for="title"> Article Publisher </label >
+                                                        <input type="text" class="form-control" name="publisher" placeholder="Enter publisher" >
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                        <label for="title"> Keywords Separated by comma [This,that,also-that]  </label >
+                                                        <input type="text" class="form-control" name="keywords" placeholder="Enter Keywords" >
+                                                        </div>
+
+                                                        <label for="exampleInputFile{{x.0}}">File input</label>
+                                                        <div class="input-group">
+                                                        <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="exampleInputFile{{x.0}}" name="file" >
+                                                        <label class="custom-file-label" for="exampleInputFile{{x.0}}">Choose file</label>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+
+
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" form="myform{{x.0}}" id="formbutton{{x.0}}">Save changes</button>
+                                          <script>
+                                              $("#formbutton{{x.0}}").click(function(){
+                                                $('#infomodal{{x.0}}').modal('toggle');
+                                                window.location.href = window.location.href;
+                                                location.reload(true)
+                                              });
+                                          </script>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+
+
+                            <button type="button" class="btn btn-danger" id="del{{x.0}}">
                                 <ion-icon name="trash-outline"></ion-icon>
+                                <script>
+                                $("#del{{x.0}}").click(function(){
+                                  $.post("/artigos/api/delete/",
+                                  {
+                                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                                    id: '{{x.0}}'
+                                  },
+                                  function(data, status){
+                                      window.location.href = window.location.href;
+                                    location.reload(true)
+                                  });
+                                });
+                                </script>
                             </button>
+
+                            {% endif %}
+
                         </td>
                         </tr>
                     {% endfor %}

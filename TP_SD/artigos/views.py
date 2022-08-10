@@ -62,7 +62,9 @@ def index(request):
             if search.data['keywords']:
                 artdf = artdf.query(keysearch, engine='python')
 
-            artdf = artdf[["id_x","author_id","name","title","subtitle","pub_date","publisher","keyword"]]
+            artdf[['new_date','split']] = artdf['pub_date'].str.split(' ', 1, expand=True)
+
+            artdf = artdf[["id_x","author_id","name","title","subtitle","new_date","publisher","keyword"]]
 
             info = artdf.__array__()
 

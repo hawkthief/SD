@@ -47,7 +47,19 @@ class EditMeta(APIView):
             pass
         if (request.user.is_superuser or request.user.id == article.author.id):
             if article:
-                article.keyword = request.data['keywords']
+                if request.data['title']:
+                    article.title = request.data['title']
+                if request.data['subtitle']:
+                    article.subtitle = request.data['subtitle']
+                if request.data['pub_date']:
+                    article.pub_date = request.data['pub_date']
+                if request.data['publisher']:
+                    article.publisher = request.data['publisher']
+                if request.data['keywords']:
+                    article.keyword = request.data['keywords']
+                if request.data['file']:
+                    article.article = request.FILES['file']
+
                 article.save()
                 return Response(status=status.HTTP_200_OK)
             return Response(status=status.HTTP_404_NOT_FOUND)
