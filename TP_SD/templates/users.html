@@ -27,16 +27,16 @@
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <li class="nav-item d-none d-sm-inline-block">
-              <a href="/artigos" class="nav-link" id="Home" >Home</a>
+              <a href="/artigos/" class="nav-link" id="Home" >Home</a>
             </li>
 
             <li class="nav-item d-none d-sm-inline-block">
-              <a href="/artigos/upload" class="nav-link" id="Register" >Register</a>
+              <a href="/artigos/upload/" class="nav-link" id="Register" >Register</a>
             </li>
 
             {% if request.user.is_superuser %}
             <li class="nav-item d-none d-sm-inline-block">
-              <a href="/artigos/manage" class="nav-link" id="Users" >Manage Users</a>
+              <a href="/manage/" class="nav-link" id="Users" >Manage Users</a>
             </li>
             {% endif %}
 
@@ -51,7 +51,11 @@
         {% block content_wrapper %}
         <div class="content-wrapper" >
 
-        MANAGE PAGE
+        {%for x in info%}
+
+            {{x.0}} {{x.1}} {{x.2}} <br>
+
+        {% endfor %}
 
         </div>
         {% endblock content_wrapper %}

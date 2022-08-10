@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from .forms import newuserForm
 from artigos import APIs
+from artigos.models import usuario
+import pandas as pd
 
 @login_required()
 def home(request):
@@ -13,8 +15,15 @@ def home(request):
 @login_required()
 def manageusers(request):
     if request.user.is_superuser:
+        if request.method == 'POST':
+            pass
+        else:
+            users = usuario.objects.all().values()
+            df = pd.DataFrame(users)
+            df = df[['name', 'email', 'is_superuser']]
+            info = df.__array__()
+            return render(request, 'users.html', {"info": info})
 
-        return render(request, 'users.html')
     else:
         return redirect('/artigos/search/')
 

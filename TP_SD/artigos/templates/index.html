@@ -95,57 +95,53 @@
                 </div>
             </form>
 
-    <div class="col-12">
-    <div class="card">
-    <div class="card-header">
-    <h3 class="card-title">Search Result</h3>
-    </div>
-    </div>
-    </div>
-    <div class="card-body">
-    <table class="table table-bordered table-hover">
-    {% for x in articles %}
-        <thead>
-        <tr>
-        <th>Publication Date</th>
-        <th>Title</th> {{x.4}}
-        <th>Subtitle</th> {{x.3}}
-        <th>Article</th> {{x.5}}
-        <th>Keyword</th> {{x.6}}
-        <th>Publisher</th> {{x.7}}
-        </tr>
-        </thead>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Search Result</h3>
+                    </div>
+                </div>
+            </div>
+            <table class="card-body">
+                <table class="table table-bordered table-hover">
+                    {% for x in articles %}
+                        <thead>
+                        <tr>
+                        <th>Publication Date</th>
+                        <th>Title</th> {{x.4}}
+                        <th>Subtitle</th> {{x.3}}
+                        <th>Article</th> {{x.5}}
+                        <th>Keyword</th> {{x.6}}
+                        <th>Publisher</th> {{x.7}}
+                        </tr>
+                        </thead>
 
-        <tbody>
-        <tr data-widget="expandable-table" aria-expanded="false">
-        <td>{{x.1}}</td>
-        <td>{{x.4}}</td>
-        <td>{{x.3}}</td>
-        <td>{{x.5}}</td>
-        <td>{{x.6}}</td>
-        <td>{{x.7}}</td>
-        <td>
+                        <tbody>
+                        <tr data-widget="expandable-table" aria-expanded="false">
+                        <td>{{x.1}}</td>
+                        <td>{{x.4}}</td>
+                        <td>{{x.3}}</td>
+                        <td>{{x.5}}</td>
+                        <td>{{x.6}}</td>
+                        <td>{{x.7}}</td>
+                        <td>
 
-            <i class="fas fa-download"></i>
+                            <i class="fas fa-download"></i>
 
-            <i class="fas fa-edit"></i>
+                            <i class="fas fa-edit"></i>
 
-            <i class="fas fa-garbage"></i>
+                            <i class="fas fa-garbage"></i>
 
-        </td>
-        </tr>
-    {% endfor %}
-     </div>
-            <!-- {% for x in articles %}
-
-                {{x.1}} {{x.4}} {{x.3}} {{x.5}} {{x.6}} {{x.7}} <br>
-
-            {% endfor %}
-            -->
+                        </td>
+                        </tr>
+                    {% endfor %}
+                 </table>
+            </table>
         </div>
+    </div>
         {% endblock content_wrapper %}
 
-    </div>
+
 {% endblock body %}
 
 {% block javascript %}
