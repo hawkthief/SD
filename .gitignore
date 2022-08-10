@@ -133,3 +133,4 @@ dmypy.json
 /TP_SD/artigos/migrations/
 /TP_SD/media/
 /TP_SD/API/migrations/
+/TP_SD/TP_SD/secrets.py
