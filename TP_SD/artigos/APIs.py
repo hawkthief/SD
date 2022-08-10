@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core.files.base import ContentFile
+from django.urls import reverse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .forms import artForm
 from .models import art, usuario
+from TP_SD.settings import BASE_URL
 from .forms import searchForm
+from .views import download_file
 import pandas as pd
-import mimetypes
-import os
+
 
 
 class DeleteArt(APIView):
@@ -65,8 +67,7 @@ class Download (APIView):
 
         if article:
 
-            file = article.article
-            filepath = file.path
+            url = BASE_URL + "artigos/download/" + str(request.data['id'])
+            return Response(url, status=status.HTTP_200_OK)
 
-            return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_404_NOT_FOUND)
