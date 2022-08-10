@@ -10,11 +10,10 @@
 
         <div class="register-box">
                 <div class="register-logo">
-                <a href="../../index2.html"><b>User Registration</b></a>
                 </div><p></p>
 
 
-        <form action="../../index.html" method="post">
+        <form action="/accounts/login/register/" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Full name" {{ form.name }}

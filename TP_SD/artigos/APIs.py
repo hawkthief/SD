@@ -9,11 +9,11 @@ from rest_framework import status
 from .forms import artForm
 from .models import art, usuario
 from TP_SD.settings import BASE_URL
+from TP_SD.secrets import *
+from django.core.mail import send_mail
 from .forms import searchForm
 from .views import download_file
 import pandas as pd
-
-
 
 class DeleteArt(APIView):
     def get(self, request):
@@ -71,3 +71,27 @@ class Download (APIView):
             return Response(url, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+class email(APIView):
+
+    def get(self, request):
+
+        return Response(status=status.HTTP_200_OK)
+    def post(self, request):
+        email = request.data["email"]
+
+        sendmail(email)
+
+def sendmail(email):
+    subject = "Your account"
+    msg = "Your account was made sucessfully"
+    try:
+        send_mail(
+            subject=subject,
+            message=msg,
+            from_email=email,
+            recipient_list=[EMAIL_HOST_USER],
+            auth_password=EMAIL_HOST_PASSWORD,
+        )
+    except:
+        pass
