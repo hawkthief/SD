@@ -94,7 +94,11 @@
                     </div>
                 </div>
             </form>
+        {% for x in articles %}
 
+                {{x.0}} {{x.1}} {{x.2}} {{x.3}} {{x.4}} {{x.5}} {{x.6}} {{x.7}} <br>
+
+        {% endfor %}
     <div class="col-12">
     <div class="card">
     <div class="card-header">
@@ -109,7 +113,7 @@
     <th>User</th>
     <th>Date</th>
     <th>Status</th>
-    <th>Reason</th>
+    <th>{{x.0}}</th>
     </tr>
     </thead>
     <tbody>
@@ -186,19 +190,19 @@
     </tr>
 
     <tr class="expandable-body d-none">
-        <!-- <div class="form-group">
-            <div class="col-4">
+         <div class="form-group">
+            <div class="col-1">
             <button type="submit" class="btn btn-primary btn-block">Download</button>
-            </div>
 
-            <div class="col-4">
+
+
             <button type="submit" class="btn btn-primary btn-block">Edit</button>
-            </div>
 
-            <div class="col-4">
+
+
             <button type="submit" class="btn btn-primary btn-block">Delete</button>
             </div>
-        </div> -->
+        </div>
     </tr>
     </tbody>
     </table>
@@ -207,12 +211,12 @@
     </div>
 
     </div>
-            {% for x in articles %}
+            <!-- {% for x in articles %}
 
                 {{x.0}} {{x.1}} {{x.2}} {{x.3}} {{x.4}} {{x.5}} {{x.6}} {{x.7}} <br>
 
             {% endfor %}
-
+            -->
         </div>
         {% endblock content_wrapper %}
 
