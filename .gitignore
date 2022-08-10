@@ -134,3 +134,8 @@ dmypy.json
 /TP_SD/media/
 /TP_SD/API/migrations/
 /TP_SD/TP_SD/secrets.py
+/TP_SD/cert.crt
+/TP_SD/cert.key
+/cert.pem
+/key.pem
+/mkcert-v1.4.3-linux-amd64

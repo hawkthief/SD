@@ -143,9 +143,8 @@ def sendmail(email):
         send_mail(
             subject=subject,
             message=msg,
-            from_email=email,
-            recipient_list=[EMAIL_HOST_USER],
-            auth_password=EMAIL_HOST_PASSWORD,
+            recipient_list=[email],
+            fail_silently=False,
         )
     except:
         pass
