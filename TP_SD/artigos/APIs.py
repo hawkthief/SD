@@ -15,6 +15,48 @@ from .forms import searchForm
 from .views import download_file
 import pandas as pd
 
+
+
+class Admin(APIView):
+    def get(self, request):
+
+        return Response(status=status.HTTP_200_OK)
+
+    def post(self, request):
+        user = None
+        try:
+            user = usuario.objects.get(id=request.data['id'])
+        except:
+            pass
+        if user:
+            if user.is_superuser:
+                user.is_superuser = False
+            else:
+                user.is_superuser = True
+            user.save()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+class DeleteUser(APIView):
+    def get(self, request):
+
+        return Response(status=status.HTTP_200_OK)
+
+    def post(self, request):
+        user = None
+        try:
+            user = usuario.objects.get(id=request.data['id'])
+        except:
+            pass
+        if user:
+            user.delete()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
 class DeleteArt(APIView):
     def get(self, request):
 

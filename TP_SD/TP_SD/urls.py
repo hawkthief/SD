@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+from artigos import APIs
 
 urlpatterns = [
     path('', views.home),
@@ -25,4 +26,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/login/register/', views.newuser, name='newuser'),
     path('manage/', views.manageusers, name='manageusers'),
+    path('manage/api/delete/', APIs.DeleteUser.as_view(), name='deleteuser'),
+    path('manage/api/admin/', APIs.Admin.as_view(), name='changeadmin'),
 ]

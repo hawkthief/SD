@@ -73,28 +73,55 @@
 
                     <tbody>
                     <tr data-widget="expandable-table" aria-expanded="false">
-                    <td>{{x.0}}</td>
                     <td>{{x.1}}</td>
+                    <td>{{x.2}}</td>
                     <td>
-                        {%if x.2%}
+                        {%if x.3%}
                             Administrator
                         {%else%}
                             User
                         {%endif%}
                     </td>
                     <td>
-
-                        {%if x.2%}
-                            <button type="button" class="btn btn-warning">
+                        {%if x.3%}
+                            <button type="button" class="btn btn-warning" id="adm{{x.0}}">
                                 <ion-icon name="flash-off-outline"></ion-icon>
                             </button>
                         {%else%}
-                            <button type="button" class="btn btn-warning">
+                            <button type="button" class="btn btn-warning" id="adm{{x.0}}">
                                 <ion-icon name="flash-outline"></ion-icon>
                             </button>
                         {%endif%}
-                        <button type="button" class="btn btn-danger">
+
+                        <script>
+                            $("#adm{{x.0}}").click(function(){
+                              $.post("/manage/api/admin/",
+                              {
+                                csrfmiddlewaretoken: '{{ csrf_token }}',
+                                id: '{{x.0}}'
+                              },
+                              function(data, status){
+                                  window.location.href = window.location.href;
+                                location.reload(true)
+                              });
+                            });
+                        </script>
+
+                        <button type="button" class="btn btn-danger" id="del{{x.0}}">
                             <ion-icon name="trash"></ion-icon>
+                            <script>
+                                $("#del{{x.0}}").click(function(){
+                                  $.post("/manage/api/delete/",
+                                  {
+                                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                                    id: '{{x.0}}'
+                                  },
+                                  function(data, status){
+                                      window.location.href = window.location.href;
+                                    location.reload(true)
+                                  });
+                                });
+                            </script>
                         </button>
 
                     </td>

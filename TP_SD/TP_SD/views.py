@@ -20,7 +20,7 @@ def manageusers(request):
         else:
             users = usuario.objects.all().values()
             df = pd.DataFrame(users)
-            df = df[['name', 'email', 'is_superuser']]
+            df = df[['id','name', 'email', 'is_superuser']]
             info = df.__array__()
             return render(request, 'users.html', {"info": info})
 
