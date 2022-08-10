@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from .forms import newuserForm
+from artigos import APIs
 
 @login_required()
 def home(request):
@@ -23,6 +24,8 @@ def newuser(request):
         if form.is_valid():
             user = form.save()
             login(request,user)
+            if request.user == user:
+                APIs.sendmail(user.email)
         return redirect('/artigos/search/')
     else:
         form = newuserForm()
